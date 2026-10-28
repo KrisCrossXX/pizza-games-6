@@ -1,0 +1,9 @@
+{ "manifestFiles" : [ "game.unx",
+"SugarySpire_PRANK.data",
+"SugarySpire_PRANK.html",
+"SugarySpire_PRANK.js",
+"SugarySpire_PRANK.wasm" ], "manifestFilesMD5" : [ "81fa6beb4848ea241a04600ebc723ed0",
+"0cd6c61f28320fcb25c9cc6f7e5f651c",
+"a09ed137cb848b1729396029988429a4",
+"75fac60cd8d45882eb6a41414e959cb1",
+"c8ffbefa1e035fceb0d69914c2aba8eb" ], "mainJS" : "SugarySpire_PRANK.js",  "unx": "game.unx", "index": "index.html", "runner": {"version": "2023.4.0.113", "yyc": true}}

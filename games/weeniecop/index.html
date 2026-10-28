@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <link rel="icon" href="favicon.png">
+    <title>LocoTower</title>
+    <style>
+      html { background: #000; }
+      body {
+        font-family: arial; margin: 0; padding: 0;
+        min-height: 100vh; min-height: fill-available; min-width: 100vw;
+        background-color: black;
+        display: flex; flex-direction: column;
+        overflow: hidden;
+        place-items: center; justify-content: center;
+      }
+      .emscripten { padding-right: 0; display: block; }
+      div.emscripten { text-align: center; font-family: "Lucida Console", Monaco, monospace; }
+      canvas.emscripten {
+        display: none; background-color: black;
+        transition: opacity 5s ease-in; opacity: 0;
+        filter: blur(0) grayscale(0);
+        image-rendering: optimizeSpeed; image-rendering: -moz-crisp-edges;
+        image-rendering: -webkit-optimize-contrast; image-rendering: -o-crisp-edges;
+        image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor;
+      }
+      canvas.active { animation-name: fadeIn; animation-duration: 2s; opacity: 1; }
+      canvas.paused { animation-name: blur; animation-duration: 0.5s; filter: blur(2px) grayscale(1); }
+      canvas.unpaused { animation-name: none; }
+      canvas.animatedSizeTransitions { transition: width 0.3s ease, height 0.3s ease; }
+      @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+      @keyframes blur { 0% { filter: blur(0) grayscale(0); } 100% { filter: blur(2px) grayscale(1); } }
+      .spinner {
+        height: 30px; width: 30px;
+        animation: rotation 0.8s linear infinite;
+        border: 5px solid #ffd75e; border-top: 5px solid #7a4a8c; border-radius: 100%;
+      }
+      @keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      #status { display: inline-block; vertical-align: top; font-weight: bold; color: white; }
+      #progress { width: 250px; height: 10px; -webkit-appearance: none; appearance: none; padding: 5px; }
+      progress[value]::-webkit-progress-bar { background-color: #3a3344; height: 10px; border-radius: 15px; }
+      progress[value]::-webkit-progress-value { background-image: -webkit-linear-gradient(left, #d63a2f, #ffd75e); height: 10px; border-radius: 15px; }
+      div.loading {
+        position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        pointer-events: none;
+      }
+      div.loading > * { padding: 10px; margin: 10px; }
+      #message-container {
+        display: none; min-height: 50px; background-color: rgba(20,20,20,.5);
+        width: 100%; position: absolute; top: 0;
+      }
+      #messages { margin-left: 50px; color: white; font-family: "Lucida Console", Monaco, monospace; }
+      #pauseMenuContainer {
+        position: absolute; inset: 0; display: flex; justify-content: center; align-items: center;
+      }
+      #pauseMenuContainer[hidden] { display: none !important; opacity: 0; }
+      #pauseMenuBorder {
+        background: linear-gradient(135deg, #FA1E4E, transparent 40%);
+        padding: 1px; border-radius: 4px;
+        clip-path: polygon(10.5px 0, 100% 0, 100% 100%, 0 100%, 0 10.5px);
+        width: 70vw; max-width: 400px;
+      }
+      #pauseMenu {
+        display: flex; flex-direction: column; padding: 60px 30px;
+        background: linear-gradient(180deg, #2E273F 16.15%, rgba(46,39,63,.79) 56.25%, #2E273F 91.15%);
+        border-radius: 4px;
+        clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+        animation: fadeIn .5s; opacity: 1;
+      }
+      #pauseMenu button {
+        font-weight: 500; font-size: 17px; color: white;
+        background: #FA1E4E; border: 1px solid #FA1E4E; border-radius: 6px;
+        padding: 12px 24px; margin: 5px 0; cursor: pointer;
+        -webkit-user-select: none; user-select: none;
+      }
+      #pauseMenu button:hover { filter: brightness(1.15); }
+      #pauseMenu button:active { filter: brightness(0.85); }
+      #pauseMenu button[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+
+    <div id="pauseMenuContainer" hidden>
+      <div id="pauseMenuBorder"><div id="pauseMenu">
+        <button id="resumeButton" onclick="resume()">Resume</button>
+      </div></div>
+    </div>
+
+    <div class="loading">
+      <div class="spinner" id="spinner"></div>
+      <div class="emscripten" id="status">Downloading...</div>
+      <progress value="0" max="100" id="progress" hidden="1"></progress>
+    </div>
+
+    <div id="message-container"><div id="messages"></div></div>
+
+    <script>
+      window.adsbygoogle = window.adsbygoogle || [];
+      const adBreak = adConfig = function(o) { adsbygoogle.push(o); };
+
+      const CHANGE_ASPECT_RATIO = true;
+      var bodyElement = document.getElementsByTagName("body")[0];
+      var statusElement = document.getElementById("status");
+      var progressElement = document.getElementById("progress");
+      var spinnerElement = document.getElementById("spinner");
+      var canvasElement = document.getElementById("canvas");
+      var pauseMenu = document.getElementById("pauseMenuContainer");
+      var resumeButton = document.getElementById("resumeButton");
+      const messageContainerElement = document.getElementById("message-container");
+      const messagesElement = document.getElementById("messages");
+      let rollbackMessages = [];
+
+      let clearRollbackMessagesTimeoutId = -1;
+      const showRollbackMessage = function (message) {
+        let messages = "";
+        rollbackMessages.push(message);
+        rollbackMessages.forEach(m => messages += "<p>" + m + "</p>");
+        messagesElement.innerHTML = messages;
+        messageContainerElement.style.display = 'block';
+        if (clearRollbackMessagesTimeoutId === -1) clearTimeout(clearRollbackMessagesTimeoutId);
+        clearRollbackMessagesTimeoutId = setTimeout(clearRollbackMessages, 5000);
+      };
+      const clearRollbackMessages = function () {
+        clearRollbackMessagesTimeoutId = -1;
+        rollbackMessages = [];
+        messageContainerElement.style.display = 'none';
+      };
+
+      var loadprogress = 0;
+      var startingHeight, startingWidth, startingAspect;
+      var Module = {
+        preRun: [], postRun: [],
+        print: (function () {
+          return function (text) {
+            if (text === "Starting WAD") loadprogress += 1;
+            if (loadprogress === 1) Module.setStatus(text);
+            else if (loadprogress >= 2) Module.setStatus("");
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(" ");
+            console.log(text);
+            if (text === "Entering main loop.") {
+              ensureAspectRatio();
+              loadprogress += 1;
+              canvas.width = 1920;
+              canvas.height = 1080;
+            }
+          };
+        })(),
+        printErr: function (text) {
+          if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(" ");
+          console.error(text);
+        },
+        canvas: (function () { return document.getElementById("canvas"); })(),
+        setStatus: function (text) {
+          if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: "" };
+          if (text === Module.setStatus.last.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Module.setStatus.last.time < 30) return;
+          Module.setStatus.last.time = now;
+          Module.setStatus.last.text = text;
+          if (m) {
+            text = m[1];
+            progressElement.value = parseInt(m[2]) * 100;
+            progressElement.max = parseInt(m[4]) * 100;
+            progressElement.hidden = false;
+            spinnerElement.hidden = false;
+          } else {
+            progressElement.value = null;
+            progressElement.max = null;
+            progressElement.hidden = true;
+            if (!text) {
+              spinnerElement.style.display = "none";
+              canvasElement.style.display = "block";
+            }
+          }
+          statusElement.innerHTML = text;
+        },
+        totalDependencies: 0,
+        monitorRunDependencies: function (left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left
+            ? "Preparing... (" + (this.totalDependencies - left) + "/" + this.totalDependencies + ")"
+            : "All downloads complete.");
+        },
+      };
+      Module.setStatus("Downloading...");
+      window.onerror = function (event) {
+        Module.setStatus("Exception thrown, see JavaScript console");
+        spinnerElement.style.display = "none";
+        Module.setStatus = function (text) {
+          if (text) Module.printErr("[post-exception status] " + text);
+        };
+      };
+
+      if (typeof window === "object") {
+        Module['arguments'] = window.location.search.substr(1).trim().split('&');
+        if (!Module['arguments'][0]) Module['arguments'] = [];
+      }
+
+      var g_pWadLoadCallback = undefined;
+      function setWadLoadCallback(_c) { g_pWadLoadCallback = _c; }
+      var g_pAddAsyncMethod = -1;
+      function setAddAsyncMethod(m) { g_pAddAsyncMethod = m; }
+      var g_pJSExceptionHandler = undefined;
+      function setJSExceptionHandler(h) { if (typeof h == "function") g_pJSExceptionHandler = h; }
+      function hasJSExceptionHandler() { return (g_pJSExceptionHandler != undefined) && (typeof g_pJSExceptionHandler == "function"); }
+      function doJSExceptionHandler(j) { if (typeof g_pJSExceptionHandler == "function") g_pJSExceptionHandler(JSON.parse(j)); }
+
+      function manifestFiles() { return ["favicon.png","game.unx","weinerdontusedrugs.data","weinerdontusedrugs.js","weinerdontusedrugs.wasm"].join(";"); }
+      function manifestFilesMD5() { return ["5e39c1dcae7e2f993831696a0b7dfe07","8b76dc1bc9b671f62f8b7642a436f4bd","1f906044b5680464deec59f638d78076","fc4daa6959b540e8cd533d71bb232796","2225c116455975feee5147a509269bd7"]; }
+
+      function onFirstFrameRendered() {}
+      function onGameSetWindowSize(width, height) {
+        if (startingHeight === undefined && startingWidth === undefined) {
+          startingHeight = height; startingWidth = width;
+          startingAspect = startingWidth / startingHeight;
+          window.requestAnimationFrame(ensureAspectRatio);
+          setTimeout(() => window.requestAnimationFrame(ensureAspectRatio), 100);
+        }
+      }
+
+      function triggerAd(adId, _b, _a, _d, _v, _done) {
+        var pR = triggerAdPrefix(_b, _a, _d, _v, _done);
+        var cB = pR + (0 * 16), cA = pR + (1 * 16), cD = pR + (2 * 16), cV = pR + (3 * 16), cDone = pR + (4 * 16);
+        adBreak({
+          "type": "reward", "name": adId,
+          "beforeAd": () => doGMLCallback(cB, { id: adId }),
+          "afterAd": () => doGMLCallback(cA, { id: adId }),
+          "beforeReward": (fn) => fn(),
+          "adDismissed": () => doGMLCallback(cD, { id: adId }),
+          "adViewed": () => doGMLCallback(cV, { id: adId }),
+          "adBreakDone": (pi) => { doGMLCallback(cDone, { id: adId }); triggerAdPostfix(pR); },
+        });
+      }
+
+      function ensureAspectRatio() {
+        if (canvasElement === undefined || !CHANGE_ASPECT_RATIO) return;
+        if (startingHeight === undefined && startingWidth === undefined) return;
+        canvasElement.classList.add("active");
+        const maxWidth = window.innerWidth, maxHeight = window.innerHeight;
+        var newHeight, newWidth;
+        var hq = startingHeight / maxHeight, wq = startingWidth / maxWidth;
+        if (hq > wq) { newHeight = maxHeight; newWidth = newHeight * startingAspect; }
+        else { newWidth = maxWidth; newHeight = newWidth / startingAspect; }
+        canvasElement.style.height = newHeight + "px";
+        canvasElement.style.width = newWidth + "px";
+      }
+
+      function pause() {
+        if (!canvasElement.classList.contains("active")) return;
+        GM_pause();
+        pauseMenu.hidden = false;
+        canvasElement.classList.add("paused");
+      }
+      function resume() {
+        GM_unpause();
+        pauseMenu.hidden = true;
+        canvasElement.classList.remove("paused");
+        canvasElement.classList.add("unpaused");
+        enterFullscreenIfSupported();
+        lockOrientationIfSupported();
+      }
+      function enterFullscreenIfSupported() {
+        if (!window.oprt || !window.oprt.enterFullscreen) return;
+        window.oprt.enterFullscreen();
+        let vs = GM_get_view_status(); vs.fullscreen = true; GM_set_view_status(vs);
+      }
+      function lockOrientationIfSupported() {
+        if (!window.oprt || !window.oprt.lockPortraitOrientation || !window.oprt.lockLandscapeOrientation) return;
+        let vs = GM_get_view_status();
+        if (vs.landscape === true && vs.portrait === false) window.oprt.lockPortraitOrientation();
+        else if (vs.landscape === false && vs.portrait === true) window.oprt.lockPortraitOrientation();
+      }
+
+      const resizeObserver = new ResizeObserver(() => {
+        window.requestAnimationFrame(ensureAspectRatio);
+        setTimeout(() => window.requestAnimationFrame(ensureAspectRatio), 100);
+      });
+      resizeObserver.observe(document.body);
+
+      if (/Android|iPhone|iPod/i.test(navigator.userAgent)) {
+        bodyElement.className = "scrollingDisabled";
+        canvasElement.classList.add("animatedSizeTransitions");
+      }
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState != "visible") pause();
+      });
+      setWadLoadCallback(() => { enterFullscreenIfSupported(); lockOrientationIfSupported(); });
+    </script>
+    <script src="../../js/crashlog.js"></script><script src="../../js/gamepad.js"></script><script src="../../js/touch.js"></script><script src="../../js/panic.js"></script>
+    <script async type="text/javascript" src="weinerdontusedrugs.js"></script>
+  </body>
+</html>
+<script src="../../swreg.js"></script>
