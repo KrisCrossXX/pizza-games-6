@@ -904,11 +904,6 @@
       "sha256": "d6237e37f3a1d130227dc64dc4fa40adcb76c7cb18fc154927447286187fd5d6"
     },
     {
-      "name": "run_debug.bat",
-      "size": 90,
-      "sha256": "09231069c60634b7722753050ab0d6947434c31aff5ab537aeb06d4263913b19"
-    },
-    {
       "name": "sound/Desktop/Master.bank",
       "size": 9198,
       "sha256": "a35027e94fd37fc399fd422e5426834fecb68d8fcdcaa457420b6098e574483b"
