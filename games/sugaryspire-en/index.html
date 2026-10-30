@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>Sugary Spire: Exhibition Night</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #000; overflow: hidden; }
+    #stage {
+      position: fixed; inset: 0;
+      display: grid; place-items: center;
+    }
+    #frame {
+      width: min(100vw, calc(100vh * 4 / 3));
+      aspect-ratio: 4 / 3;
+    }
+    canvas {
+      width: 100% !important; height: 100% !important;
+      display: block;
+      image-rendering: pixelated; image-rendering: crisp-edges;
+      background: #000;
+      outline: none;
+    }
+    #overlay {
+      position: fixed; inset: 0;
+      display: grid; place-items: center;
+      background: #000;
+      z-index: 2;
+      transition: opacity .3s;
+    }
+    #overlay.hidden { opacity: 0; pointer-events: none; }
+    .panel {
+      width: min(480px, 88vw);
+      display: grid; gap: 16px; justify-items: center;
+      font-family: 'Courier New', ui-monospace, monospace;
+      color: #fff;
+      text-align: center;
+    }
+    #status { font-size: 14px; letter-spacing: .08em; min-height: 1.4em; }
+    progress { width: 100%; height: 14px; accent-color: #ffd75e; }
+  </style>
+</head>
+<body>
+  <div id="stage"><div id="frame"><canvas id="canvas" width="640" height="480" tabindex="0"></canvas></div></div>
+  <div id="overlay">
+    <div class="panel">
+      <p id="status">loading…</p>
+      <progress id="progress" max="1" value="0"></progress>
+    </div>
+  </div>
+
+<script type="module">
+const GAME_DIR = 'sugaryspire-en';
+const GAME_ROOT = `games/${GAME_DIR}`;
+const WASM_GAME_PATH = `/butterscotch/${GAME_ROOT}/data.win`;
+const WASM_SAVE_PATH = `/butterscotch/saves/${GAME_DIR}`;
+
+const canvas = document.querySelector('#canvas');
+const overlay = document.querySelector('#overlay');
+const progress = document.querySelector('#progress');
+const statusEl = document.querySelector('#status');
+
+let worker = null;
+let audioCtx = null;
+let audioNextTime = 0;
+let started = false;
+let manifest = null;
+
+function setStatus(t) { statusEl.textContent = t; }
+function log(t) { console.log('[runner]', t); }
+function err(t) { console.error('[runner]', t); }
+
+async function ensureCrossOriginIsolation() {
+  if (crossOriginIsolated) return true;
+  if (location.protocol === 'file:') return false;
+  if (!('serviceWorker' in navigator)) return false;
+  try {
+    await navigator.serviceWorker.register('./coi-serviceworker.js', { scope: './' });
+    await navigator.serviceWorker.ready;
+    if (!navigator.serviceWorker.controller) {
+      if (sessionStorage.getItem(GAME_DIR + '-coi-reload') !== '1') {
+        sessionStorage.setItem(GAME_DIR + '-coi-reload', '1');
+        location.reload();
+        return false;
+      }
+    }
+  } catch (e) { err(`COI setup failed: ${e.message}`); }
+  return crossOriginIsolated;
+}
+
+async function getDir(root, parts, create = true) {
+  let dir = root;
+  for (const p of parts) dir = await dir.getDirectoryHandle(p, { create });
+  return dir;
+}
+async function readTextFile(dir, name) {
+  try { const h = await dir.getFileHandle(name); return await (await h.getFile()).text(); }
+  catch { return null; }
+}
+async function writeBlobToFile(dir, name, blob) {
+  const h = await dir.getFileHandle(name, { create: true });
+  const w = await h.createWritable();
+  await w.write(blob); await w.close();
+}
+async function copyResponseToFile(dir, name, response, totalSize, onBytes) {
+  const fh = await dir.getFileHandle(name, { create: true });
+  const w = await fh.createWritable();
+  if (!response.body?.getReader) {
+    const blob = await response.blob();
+    await w.write(blob); await w.close(); onBytes(totalSize || blob.size); return;
+  }
+  const reader = response.body.getReader();
+  let pos = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      await w.write({ type: 'write', position: pos, data: value });
+      pos += value.byteLength;
+      onBytes(value.byteLength);
+    }
+    await w.truncate(pos);
+  } finally { await w.close(); }
+}
+
+async function installGameToOpfs() {
+  const opfs = await navigator.storage.getDirectory();
+  const gameDir = await getDir(opfs, GAME_ROOT.split('/'), true);
+  const installed = await readTextFile(gameDir, '.port-version');
+  if (installed?.trim() === manifest.version) {
+    setStatus('starting…');
+    progress.value = 1;
+    return;
+  }
+  const total = manifest.files.reduce((s, f) => s + f.size, 0);
+  let copied = 0;
+  progress.max = total; progress.value = 0;
+  for (const f of manifest.files) {
+    setStatus(`installing… ${Math.floor((copied / total) * 100)}%`);
+    const parts = f.name.split('/');
+    const fileName = parts.pop();
+    const destDir = parts.length ? await getDir(gameDir, parts, true) : gameDir;
+    const url = `./game/${parts.concat(fileName).map(encodeURIComponent).join('/')}`;
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`fetch ${f.name}: HTTP ${res.status}`);
+    await copyResponseToFile(destDir, fileName, res, f.size, b => {
+      copied += b; progress.value = Math.min(copied, total);
+    });
+  }
+  await writeBlobToFile(gameDir, '.port-version', new Blob([manifest.version], { type: 'text/plain' }));
+  progress.max = 1; progress.value = 1;
+  setStatus('starting…');
+}
+
+function keyToGmlCode(e) {
+  const c = e.code;
+  if (/^Key[A-Z]$/.test(c)) return c.charCodeAt(3);
+  if (/^Digit[0-9]$/.test(c)) return c.charCodeAt(5);
+  if (/^Numpad[0-9]$/.test(c)) return 96 + Number(c.slice(6));
+  const map = {
+    ArrowLeft: 37, ArrowUp: 38, ArrowRight: 39, ArrowDown: 40,
+    Enter: 13, NumpadEnter: 13, Escape: 27, Space: 32,
+    ShiftLeft: 16, ShiftRight: 16, ControlLeft: 17, ControlRight: 17,
+    AltLeft: 18, AltRight: 18, Tab: 9, Backspace: 8,
+    Insert: 45, Delete: 46, Home: 36, End: 35, PageUp: 33, PageDown: 34,
+    NumpadMultiply: 106, NumpadAdd: 107, NumpadSubtract: 109, NumpadDecimal: 110, NumpadDivide: 111
+  };
+  if (map[c] !== undefined) return map[c];
+  const f = /^F([1-9]|1[0-2])$/.exec(c);
+  if (f) return 111 + Number(f[1]);
+  return null;
+}
+function sendKey(e, down) {
+  if (!worker || !started) return;
+  const k = keyToGmlCode(e);
+  if (k === null || (down && e.repeat)) return;
+  if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','Tab','Enter'].includes(e.code)) e.preventDefault();
+  worker.postMessage({ type: 'key', code: k, down });
+}
+window.addEventListener('keydown', e => sendKey(e, true), { passive: false });
+window.addEventListener('keyup', e => sendKey(e, false), { passive: false });
+window.addEventListener('blur', () => worker?.postMessage({ type: 'releaseAll' }));
+
+function playAudio(interleaved, frames, sampleRate) {
+  if (!audioCtx || audioCtx.state !== 'running') return;
+  const data = new Float32Array(interleaved);
+  const n = Math.min(frames, Math.floor(data.length / 2));
+  if (!n) return;
+  const buf = audioCtx.createBuffer(2, n, sampleRate);
+  const l = buf.getChannelData(0), r = buf.getChannelData(1);
+  for (let i = 0, j = 0; i < n; i++, j += 2) { l[i] = data[j]; r[i] = data[j + 1]; }
+  const now = audioCtx.currentTime;
+  if (audioNextTime < now - 0.05 || audioNextTime > now + 0.35) audioNextTime = now + 0.04;
+  audioNextTime = Math.max(audioNextTime, now + 0.025);
+  const s = audioCtx.createBufferSource();
+  s.buffer = buf; s.connect(audioCtx.destination); s.start(audioNextTime);
+  audioNextTime += n / sampleRate;
+}
+
+function fatal(msg) {
+  err(msg);
+  setStatus(`error — ${String(msg).split('\n')[0]}`);
+}
+
+async function boot() {
+  try {
+    if (location.protocol === 'file:') { setStatus('serve over http'); return; }
+    if (!('OffscreenCanvas' in window) || !canvas.transferControlToOffscreen) { setStatus('browser lacks OffscreenCanvas'); return; }
+    if (!navigator.storage?.getDirectory) { setStatus('browser lacks OPFS'); return; }
+    if (!document.createElement('canvas').getContext('webgl2')) { setStatus('WebGL 2 unavailable'); return; }
+    if (!(await ensureCrossOriginIsolation())) { setStatus('preparing…'); return; }
+
+    manifest = await (await fetch('./game/manifest.json', { cache: 'no-store' })).json();
+    sessionStorage.removeItem(GAME_DIR + '-coi-reload');
+
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'interactive' });
+    const resume = () => audioCtx.resume();
+    window.addEventListener('pointerdown', resume);
+    window.addEventListener('keydown', resume);
+
+    await installGameToOpfs();
+
+    const offscreen = canvas.transferControlToOffscreen();
+    worker = new Worker('./runner-worker.js', { type: 'module' });
+    worker.onmessage = ev => {
+      const m = ev.data || {};
+      if (m.type === 'log') (m.level === 'error' ? err : log)(m.text);
+      else if (m.type === 'ready') { started = true; overlay.classList.add('hidden'); canvas.focus(); }
+      else if (m.type === 'audio') playAudio(m.data, m.frames, m.sampleRate);
+      else if (m.type === 'runnerExit') { started = false; setStatus('game exited — refresh'); overlay.classList.remove('hidden'); }
+      else if (m.type === 'fatal') fatal(m.error || 'unknown runner error');
+    };
+    worker.onerror = e => fatal(e.message || 'worker error');
+    worker.postMessage({
+      type: 'boot', canvas: offscreen, sampleRate: audioCtx.sampleRate,
+      gamePath: WASM_GAME_PATH, savesPath: WASM_SAVE_PATH
+    }, [offscreen]);
+  } catch (e) {
+    fatal(e?.stack || e?.message || String(e));
+  }
+}
+
+boot();
+</script>
+</body>
+</html>

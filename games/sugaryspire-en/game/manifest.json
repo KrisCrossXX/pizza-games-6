@@ -1,0 +1,932 @@
+{
+  "title": "Sugary Spire: Exhibition Night",
+  "version": "5a4cf13349744212",
+  "entry": "data.win",
+  "files": [
+    {
+      "name": "data.win",
+      "size": 27476828,
+      "sha256": "5a4cf13349744212a621dee24d8b37ac40d24cf5481cb038cbef5f991d023811"
+    },
+    {
+      "name": "lang/EN.txt",
+      "size": 29055,
+      "sha256": "f82ad392e6a56790b26e2b331c3379d982ea41407e7858b7594ba3aff49cceb6"
+    },
+    {
+      "name": "lang/EN/Dictionary.json",
+      "size": 4349,
+      "sha256": "342b47d1bab03e7a070740b0b6e12f9a3c073f698b0d08b4f08e554a949bed8b"
+    },
+    {
+      "name": "lang/EN/Keys/keys_EN.png",
+      "size": 2955,
+      "sha256": "214783c5b667cc4ba9267344889390709d63dab5cd7861c2204d19a7e101d580"
+    },
+    {
+      "name": "lang/EN/Sprites/spr_lang_flag_EN.png",
+      "size": 1886,
+      "sha256": "cedd22b5981226a2c51c5ac5cc28d8e8f898a8b0e2925d67f42419d75c97d619"
+    },
+    {
+      "name": "lang/ES.txt",
+      "size": 30759,
+      "sha256": "1a7afb07e520b4192a4a0c18d139f84109e95f21189c39ec5d9a1debe15c2b61"
+    },
+    {
+      "name": "lang/ES/Dictionary.json",
+      "size": 3005,
+      "sha256": "ef182e5f07794ca104088a79c5420386bd7ed5fc62ce8490d1ce5f361efdc3eb"
+    },
+    {
+      "name": "lang/ES/Keys/keys_EN.png",
+      "size": 2955,
+      "sha256": "214783c5b667cc4ba9267344889390709d63dab5cd7861c2204d19a7e101d580"
+    },
+    {
+      "name": "lang/ES/Sprites/bg_rank_1_ES.png",
+      "size": 6450,
+      "sha256": "3499f351ed726a4a64c06177f69de1c46ba58b0c08ef1713f85556288ea753ef"
+    },
+    {
+      "name": "lang/ES/Sprites/bg_rank_2_ES.png",
+      "size": 3944,
+      "sha256": "5692f172ec6a1d13a3e41384ef26594093356a0c18836a856b77c76975a8f97a"
+    },
+    {
+      "name": "lang/ES/Sprites/bg_rank_3_ES.png",
+      "size": 5098,
+      "sha256": "2ea8df4d556419649f9c3b8eae2cfc5f85d9e25c52bdbef66e4b8609fd7dcb34"
+    },
+    {
+      "name": "lang/ES/Sprites/bg_rank_4_ES.png",
+      "size": 6290,
+      "sha256": "e9ff6839b4e0383d8ab76f2524d6e0864c555b59f41a002f2f5f34ad366bbf1c"
+    },
+    {
+      "name": "lang/ES/Sprites/bg_rank_5_ES.png",
+      "size": 5983,
+      "sha256": "e7ee1f9d3fa97af8761e4186923d92ece7c6122a0393af3f8c56b5c7d4d29043"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_achievementText_ES.png",
+      "size": 3340,
+      "sha256": "e5ea58a3ef00c03551f50ec075250de5cc11801db0d9d80283c94bb349e3432e"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_bartimer_blotchspotshowtime_text_ES.png",
+      "size": 15989,
+      "sha256": "b0d11c650388d8ec6fb71eafbeb593c23d25b009cb6077c6ac93397f9041f450"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_comboEnd_ES.png",
+      "size": 772,
+      "sha256": "627bf9ae3e1ef11b7623d49d633f1ea84abeb85391014a16a6f24f18581b2802"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_comboOver_ES.png",
+      "size": 416,
+      "sha256": "9dbe5e79002560f5f13c66cd8b2ad4080e5f6c951915a76f89be491c79309ede"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_comboTitles_ES.png",
+      "size": 59016,
+      "sha256": "8d0172a1665eff52bf0d35ccf103450cb2974557da83aa56d3dc8139de0dae3f"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_cottondeco_ES.png",
+      "size": 83359,
+      "sha256": "314bd0942ff7ad5f3f5bb6252d9c749cf88a9e7e518123af6c8c6167a052db84"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_cottondecovandalized_ES.png",
+      "size": 9099,
+      "sha256": "3ce69c3807724026a79fabb0c2a7d3ab946f7422862a38610faaee8946657a6e"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_cottonsign_ES.png",
+      "size": 3076,
+      "sha256": "140b2952fea3cfc41bef67badea23bad91875092057f8132d449a141872a10e6"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_delete_exhib_ES.png",
+      "size": 837,
+      "sha256": "4d11e51f3f607dfea44399678d4003156a0c9869fbc083a985d603e1ec0e37ab"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_ducksign_ES.png",
+      "size": 6255,
+      "sha256": "fb48ddebe1cfa8694917b1bcdac6f073c889acdaed270363d3a4faedb3671c1c"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_exit_exhib_ES.png",
+      "size": 1261,
+      "sha256": "6b72761df31b6ada257647ef2555c050bfe1639d2a031e89c9cd9cc1a814b179"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_hub_backdoor_ES.png",
+      "size": 1794,
+      "sha256": "796a3357035a9467c1ab4fc0f89de2e2a2fb936ff1b1ed19889ef027cfe79019"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_lang_flag_ES.png",
+      "size": 1834,
+      "sha256": "a0427abb531ece43a03062c48ad6e0e673296db409e5dea08824caded5b229b1"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_lapbg_ES.png",
+      "size": 5386,
+      "sha256": "010c8014602124b0d23ec64c18f210d0a693c0910801234d7286c17aabe36d64"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_lappingportal_icon_ES.png",
+      "size": 1217,
+      "sha256": "4146f98bc448c8e18ed7a5b44996eb9417d9b1ba0be2082f2fe318cdbd349690"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_molassessign2_ES.png",
+      "size": 3560,
+      "sha256": "984b7a72cc0984844b9f65077caa6603a48fb751124c3b072188cdebf1886f60"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_molassessign_ES.png",
+      "size": 34745,
+      "sha256": "637ad25f8f47b3162df9b752d918885d59a355c018ecc1f3570e5b10089fb3e1"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_newpause_border_ES.png",
+      "size": 8540,
+      "sha256": "90a2f3089d5572f82de350a3ae95f0bd4935cc936ae17c53996cdc42918629d2"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_newpause_treasure_ES.png",
+      "size": 7457,
+      "sha256": "757be79f00c008a76c89974f65bca7257632c13574c6eb9df3d9c4493d8af6cf"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_nowplaying_ES.png",
+      "size": 6140,
+      "sha256": "a43a6ecdbfcf63fa0adba79c261a65abfa80e5410155716f4dae6c97b8bc266d"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_nowplayingbonus_ES.png",
+      "size": 6140,
+      "sha256": "000b4722b24f2123b8eed24ee569853559a2d9bf89bd5a857d84784befa8f05d"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_paletteUnlock_ES.png",
+      "size": 2929,
+      "sha256": "7ed1bc77839ecf94782e8e82588edbae90f08f4c9998c780a67867472578dc62"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_rankA_text_ES.png",
+      "size": 10473,
+      "sha256": "83e1a6d80b7e37c3bd56b99ab8dd43cf84a23745bf6ac0deffb854f6b2b3f5bc"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_rankB_text_ES.png",
+      "size": 7388,
+      "sha256": "f891cdb7eb60d5eaac86ef72f323c8126b0d06855a4f3a89725228fccea0743c"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_rankC_text_ES.png",
+      "size": 6094,
+      "sha256": "18e3ff7b1cd6b392ba134d30c26982a5a334162050ed1c98a0cfddf8f5d4952e"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_rankD_text_ES.png",
+      "size": 9327,
+      "sha256": "8b6bae16b0d7ca15c05c66d49e6ac573bad60fff65e6d758980a277d3800040b"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_rankS_text_ES.png",
+      "size": 10569,
+      "sha256": "c50b97b95d1d3b31f58f0509dc6b3b9284df7c38dfc472b8d209c5b5d8d94d3e"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_rank_highscore_ES.png",
+      "size": 1609,
+      "sha256": "018cd81ef9396e9d73d685be461cd9c16126fe07cabe258319223f2ca543c1a7"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_rankclipboard_ES.png",
+      "size": 12643,
+      "sha256": "ef38880e2a5d6631e2c3f4c07897104aae4dfa7f7511058ef659f8ca94d96717"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_sugarrush_ES.png",
+      "size": 24169,
+      "sha256": "fdb00e986268d92d74b3c53c9ed1d5752fb980c1e2a3fd2b684b1c41430aa422"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_technicaldifficulty_ES.png",
+      "size": 12157,
+      "sha256": "9469f933df4a0c73784eb232af870eb51c8a1445276e7a8de516b19db673a379"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_technicaldifficulty_pizzy_ES.png",
+      "size": 73125,
+      "sha256": "fef595ad5df7c381c1b5d7d40d2f971ad8d6322e49be80f0441109fd601612bf"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_timesup_ES.png",
+      "size": 19750,
+      "sha256": "4c366e4498a702942ac959c1184521444c254b06c4a3f1115608325e59b6d9b1"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_titleBg_exhib_ES.png",
+      "size": 31237,
+      "sha256": "cde9a9c15f1902d2c9b42520d65779bdd381a845cd16c1bb1f4a0160fae39d40"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_titlecards_title_ES.png",
+      "size": 33250,
+      "sha256": "92d0f559ae66d03d5f4d2c8c1eb9fa0edb650943da116886c6adeef0e7171ae6"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorial_getthese_ES.png",
+      "size": 2914,
+      "sha256": "323f001c2b1e02534ae616756d6b62ca06a99911766a3d575edcc82473839b23"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorialassets1_ES.png",
+      "size": 3454,
+      "sha256": "cca6466e1b12ae3cb6d5465e93c66097d3d3c35b6a502205a2eb42bf98078be4"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorialassets2_ES.png",
+      "size": 2472,
+      "sha256": "802b1ef7690538ce86927c078a0d8a2a7c803253eb2226134cdd58fab0652d6b"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorialassets3_ES.png",
+      "size": 4117,
+      "sha256": "2c0fa6f538ccc81b2b62c9f50ed8db676b8218f71506dbcb438e9b9bc584363b"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorialassets4_ES.png",
+      "size": 3711,
+      "sha256": "9da41c5d78e7c8e36cb8f1ac17ade13b41f96496d40082906334a9d133b86d72"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorialassets5_ES.png",
+      "size": 4356,
+      "sha256": "309b06d6409ba8c081b567c32647d49ce52ea6c9c2fe9d62744fb3d825a4e334"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorialassets6_ES.png",
+      "size": 3318,
+      "sha256": "856b0de5660aa68f59ad82b41da4d994a48384ef5f1f3d3d2a9164a9f4f7374a"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorialassets7_ES.png",
+      "size": 3276,
+      "sha256": "a05ab530624c497ac123b6cba262436043d9e6b780353c5d1060b9dc977440c9"
+    },
+    {
+      "name": "lang/ES/Sprites/spr_tutorialassets8_ES.png",
+      "size": 3695,
+      "sha256": "5b548f380146a0d94326bfd4c7e8a4598c2fd747789e896b3a8571333f7b0d60"
+    },
+    {
+      "name": "lang/PTBR.txt",
+      "size": 30137,
+      "sha256": "49540d8e9b487009d8588b180659c960c55cae4952d4d234cd33e8d2cc0e10a8"
+    },
+    {
+      "name": "lang/PTBR/Dictionary.json",
+      "size": 2905,
+      "sha256": "3d7c33f20426a7aae9a2c17ae1664056b9e21e60c82822a4f984ad5a909ed195"
+    },
+    {
+      "name": "lang/PTBR/Keys/keys_EN.png",
+      "size": 2955,
+      "sha256": "214783c5b667cc4ba9267344889390709d63dab5cd7861c2204d19a7e101d580"
+    },
+    {
+      "name": "lang/PTBR/Sprites/bg_rank_1_PTBR.png",
+      "size": 6484,
+      "sha256": "44cd36c161f044b080a7141be13f3d8ceeb6dc3a0c1a3cdc45d1522c824b8f49"
+    },
+    {
+      "name": "lang/PTBR/Sprites/bg_rank_2_PTBR.png",
+      "size": 3729,
+      "sha256": "6093b26b44adbb9636cc9ebd3535f8666f0667efde5e09b9d7ff376c6d2d3d23"
+    },
+    {
+      "name": "lang/PTBR/Sprites/bg_rank_3_PTBR.png",
+      "size": 4991,
+      "sha256": "663a9942cdeb3177b5d9b3e49a8b1f1b2165496653b5c59f75b7127a35142487"
+    },
+    {
+      "name": "lang/PTBR/Sprites/bg_rank_4_PTBR.png",
+      "size": 5969,
+      "sha256": "ab95974bc9b9fa3e35d4c0df465504b280464c4bb8e319cfa279bfb69016d883"
+    },
+    {
+      "name": "lang/PTBR/Sprites/bg_rank_5_PTBR.png",
+      "size": 5288,
+      "sha256": "a1f6e961d5822d40d3135d3a1e737c493695b518d7be2b44cc2c2ae38769c23e"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_achievementText_PTBR.png",
+      "size": 2342,
+      "sha256": "42ad6e3f6927c2a6dc36b8c8ea808ae92c40ca9ee9819e3bcf1b837edfb1942f"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_bartimer_blotchspotshowtime_text_PTBR.png",
+      "size": 18206,
+      "sha256": "f777390aa29bfdc90c9b053bf64c93646b53d2c2f761cd0e78f889151637391e"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_comboEnd_PTBR.png",
+      "size": 679,
+      "sha256": "a81c467e3130497827c9394731bb2668a16f9e9318e5959d964c5a9fc5f01b2b"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_comboOver_PTBR.png",
+      "size": 498,
+      "sha256": "36e5403867827d1829a0fb3e21cc93b0cc3cf445ee49ebaa347d5aaf3421594c"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_comboTitles_PTBR.png",
+      "size": 55477,
+      "sha256": "a50d780d962b8153e0a8536fff3f4f71c9c20be10eaeb4e5c952285bae23158f"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_cottondeco_PTBR.png",
+      "size": 11556,
+      "sha256": "84277c6347367fe2a7d4cab0cbf6b202a8144e30fc20871207d49178d074450e"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_cottondecovandalized_PTBR.png",
+      "size": 10089,
+      "sha256": "81f56adaacdafd4d91586ef0df30b1ec487c0f42ce6b8ff506aaa151448c5c19"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_cottonsign_PTBR.png",
+      "size": 3290,
+      "sha256": "87ca9ac0f8b6d1f5339344279c7ebb03701bdd8f7acf891fba39eb1067dcfe2d"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_delete_exhib_PTBR.png",
+      "size": 920,
+      "sha256": "8d77baf8a65292e52befc0b4af81445e1d866a5ca4ef8dcb8a21fab0bdec2fd7"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_ducksign_PTBR.png",
+      "size": 6109,
+      "sha256": "fde3815f3bc0e0ae448b390e0c075db7843d4bbb88aa21a37270ad97ee82ad93"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_exit_exhib_PTBR.png",
+      "size": 1175,
+      "sha256": "ddf1f9f73c79a0b906bb0418a575f228192f67e347110e6b72892a91dd606772"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_hub_backdoor_PTBR.png",
+      "size": 3501,
+      "sha256": "6923c7bf51d25f652cc4bae1f604e4bc46e11fd2217128234176fbafbc645031"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_lang_flag_PTBR.png",
+      "size": 2427,
+      "sha256": "ede48706da5163ab80fc657aafb7b7882dc38b4466b9f1dbf0fb39a8b4b20976"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_lapbg_PTBR.png",
+      "size": 5237,
+      "sha256": "d4ef1838c24b558d3ca7263ea55b465af2d8d5222ed764bc271fe08f627536f5"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_lappingportal_icon_PTBR.png",
+      "size": 1153,
+      "sha256": "4e85ec1a4b0826398d07ee8b3a55fec5deae656cad876e2f9abec5db49d3283c"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_molassessign2_PTBR.png",
+      "size": 8334,
+      "sha256": "65132ec9b6e5233418147e6f0168399fa4b52d0c66a3000c1b1fb93d12c03bdd"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_molassessign_PTBR.png",
+      "size": 34737,
+      "sha256": "4ae0d1b938bdfa9709565b5ac642d672d421f01761509af2a92c6cb1df017210"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_newpause_border_PTBR.png",
+      "size": 8846,
+      "sha256": "cba9fdf9d743a5af4244afc840d0c616b45b5d427353908d86a7f660f5668467"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_newpause_treasure_PTBR.png",
+      "size": 6199,
+      "sha256": "5d7cc7ba1639dbfd30e220223797468c02425ecefe867600211257d2d479b1b6"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_nowplaying_PTBR.png",
+      "size": 11090,
+      "sha256": "a091a9e08a860cbac82ee9914fc4cbd539f741826290849ed36a95763efb4222"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_nowplayingbonus_PTBR.png",
+      "size": 11170,
+      "sha256": "67fe7980c9fc0960a7e6cbc40db980899e7b57ae89c1d5a7c96f8326b9fbb27e"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_paletteUnlock_PTBR.png",
+      "size": 5749,
+      "sha256": "f9a5ec2a7dec6c134dab08e02fbf036a5606e44caae7bd2917e494337959ce71"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_rankA_text_PTBR.png",
+      "size": 7842,
+      "sha256": "d87f59c88b8b5ffb78777a78d49e2c7a4dca94c89da3668124dd4ad7c6525e70"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_rankB_text_PTBR.png",
+      "size": 6715,
+      "sha256": "73ef7cc0419c6bbbd94a578bc698ca5edb7f005e54802a9f24aed613fd1c6630"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_rankC_text_PTBR.png",
+      "size": 5628,
+      "sha256": "c4b096c9d924bd9c2b6e4892c5822ddac79a897b099f15aa7ebc94bdbec55e5e"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_rankD_text_PTBR.png",
+      "size": 8391,
+      "sha256": "4944e424dd02bbcc126afe11d03ebf170428a3b8020d3fa516c036a9018bebfe"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_rankS_text_PTBR.png",
+      "size": 9651,
+      "sha256": "c9e65c601ad2956b6dc13eb3094a00125180e67e7265ac22619dc2faf6340113"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_rank_highscore_PTBR.png",
+      "size": 1226,
+      "sha256": "4585ee8618e96d6a7e430dcecba409fe0d119d8016d286160936ce93e800b194"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_rankclipboard_PTBR.png",
+      "size": 12572,
+      "sha256": "488ad4c06635e1c3cb4ee805b33732ed0bffe9fb72dacf774f675a2d27ec62c5"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_sugarrush_PTBR.png",
+      "size": 7045,
+      "sha256": "e1fe9a7acfd19f120aeb57f7b753616e749cb0f663a121be7c9be5907c4e13e8"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_technicaldifficulty_PTBR.png",
+      "size": 7935,
+      "sha256": "80cd9ab583915785b98c31aae5025ebaf40270a3ee0e8cd9023b84f11045b92e"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_technicaldifficulty_pizzy_PTBR.png",
+      "size": 71891,
+      "sha256": "1b9e3e50882f33c12a836e279a621ba757c1dadd2f51ad260361934abb08a330"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_timesup_PTBR.png",
+      "size": 18875,
+      "sha256": "9c980fc708e264b38cddfdeebf57342c80485d5e3a46555e87796b6a81f817e0"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_titleBg_exhib_PTBR.png",
+      "size": 31254,
+      "sha256": "a9fc78e9784f5cb0d79fc6e689e2260a5c4963dd0e071255ef3e0ddb3b34e46c"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_titlecards_title_PTBR.png",
+      "size": 18048,
+      "sha256": "a6892008453832cdf77b82db053620ff2c3e4a05ab7e82f3652d80918b7e0d78"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorial_getthese_PTBR.png",
+      "size": 2601,
+      "sha256": "f0b8924e6035629823a42062b2036c9022a2090b3e5bb6a976c7e105af40c787"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorialassets1_PTBR.png",
+      "size": 3830,
+      "sha256": "922f24e2c825cacd4f1cf29d1b917709049c5a6d5ea1e22d88897db97e612d3f"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorialassets2_PTBR.png",
+      "size": 2456,
+      "sha256": "c5e451a77be9b4d3c581cc075d0fa5d98bbac10216458e694e983944d7c37bb3"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorialassets3_PTBR.png",
+      "size": 4075,
+      "sha256": "fe3192eba83f5eda1b44726ea549861a261046cb311dadaadaf4f385153652ab"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorialassets4_PTBR.png",
+      "size": 3692,
+      "sha256": "666ef49b084e4c90ee9a72b29bb619041cf407822bfc7460c0cedf1eaedd32b2"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorialassets5_PTBR.png",
+      "size": 4306,
+      "sha256": "05affa5d1453e526b32f0eb25a7a42e73075ea50c45b225891bccd3a7bb44a8f"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorialassets6_PTBR.png",
+      "size": 3360,
+      "sha256": "93b14633dc2ca37fce31e9eee2ce132acb93f05030dacb7816a9f9ff6e5c7881"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorialassets7_PTBR.png",
+      "size": 3252,
+      "sha256": "18dd01fdc3ea83530ff3c2d740f15b95506df47db2e16d9e2d9cc2a3ace613a2"
+    },
+    {
+      "name": "lang/PTBR/Sprites/spr_tutorialassets8_PTBR.png",
+      "size": 3759,
+      "sha256": "4cafeec1ba9e9f683a353cef343780adc16508b07db0aa1f17b8d117ee2e5494"
+    },
+    {
+      "name": "lang/RU.txt",
+      "size": 40098,
+      "sha256": "765ffbff257b982fcedf8d2cb5d4aa0305683806ff8148f44de70a293cc8aedd"
+    },
+    {
+      "name": "lang/RU/Dictionary.json",
+      "size": 5300,
+      "sha256": "c72748d8e623efec94bc0256ccec3415c2c2af6b3d356c70e4375f4ab07413b2"
+    },
+    {
+      "name": "lang/RU/Fonts/spr_bubblefont_RU.png",
+      "size": 3721,
+      "sha256": "592ed0ea59cd4a545c2c23b1d29b07f67d6486349e91c9b52ada46f6afe9717e"
+    },
+    {
+      "name": "lang/RU/Fonts/spr_creditsfont_RU.png",
+      "size": 10572,
+      "sha256": "99c4fc008f6d4d60749a77a5c8741066d3a25948875cf56e4e9efe4e9526545f"
+    },
+    {
+      "name": "lang/RU/Fonts/spr_font_RU.png",
+      "size": 9869,
+      "sha256": "5cee33e8fb9110ff50905ccadae915501b4e0e505bcb74492067a678a5f89723"
+    },
+    {
+      "name": "lang/RU/Fonts/spr_npcfont_RU.png",
+      "size": 8241,
+      "sha256": "e9e5a9e8dea4a7415cf15dfbdb753d04735681deca25ca4827b2276daddb079f"
+    },
+    {
+      "name": "lang/RU/Fonts/spr_npcsmallfont_RU.png",
+      "size": 2933,
+      "sha256": "9b849c478ae0cf1f14523a5e4c6e8974ebababcefbc9296d410b73bce4748d18"
+    },
+    {
+      "name": "lang/RU/Fonts/spr_promptfont_RU.png",
+      "size": 11888,
+      "sha256": "06649bfd0348682e2ddab812e03f2e1bae006e45d0565e5396af7af948ac8922"
+    },
+    {
+      "name": "lang/RU/Fonts/spr_smallfont_RU.png",
+      "size": 4044,
+      "sha256": "4617933b56ea444b2bee1a1db616de1066f1862f4ddd134f89b7a645ac1c8a68"
+    },
+    {
+      "name": "lang/RU/Keys/keys_EN.png",
+      "size": 2955,
+      "sha256": "214783c5b667cc4ba9267344889390709d63dab5cd7861c2204d19a7e101d580"
+    },
+    {
+      "name": "lang/RU/Sprites/bg_controllerdisconnect_text3_RU.png",
+      "size": 5018,
+      "sha256": "96ba4fc2aef3d15edcf531d9b299eaa5c8df24c0b0452c8d43f345715956ce9d"
+    },
+    {
+      "name": "lang/RU/Sprites/bg_controllerdisconnect_text4_RU.png",
+      "size": 4848,
+      "sha256": "34d28ae90244fa4565c3e945dc2f6bff961a0e0d50e98b39ccec6c96da35fd9f"
+    },
+    {
+      "name": "lang/RU/Sprites/bg_controllerdisconnect_text5_RU.png",
+      "size": 5548,
+      "sha256": "48582f84179de0dbfab521b983670132ab80a1308e475b8d1230a5920fa7abf2"
+    },
+    {
+      "name": "lang/RU/Sprites/bg_rank_1_RU.png",
+      "size": 6250,
+      "sha256": "41f8c18588be06ca635bba729243db39c12386539e457fd1d83abb6ad9ba7fa3"
+    },
+    {
+      "name": "lang/RU/Sprites/bg_rank_2_RU.png",
+      "size": 3752,
+      "sha256": "fda763a43b523a40c6d3b50ed5a8902aebd3ee7a559fda0f9605efc3e2409367"
+    },
+    {
+      "name": "lang/RU/Sprites/bg_rank_3_RU.png",
+      "size": 5112,
+      "sha256": "87958fab11455d1b7ff2eece0b143cd1999bd3ab0c1e12276635cc2a390b1b42"
+    },
+    {
+      "name": "lang/RU/Sprites/bg_rank_4_RU.png",
+      "size": 5876,
+      "sha256": "d6b5f56dfadce5b35a0026f7be7526b4f600906d489bed01c3dcaa85c6057daa"
+    },
+    {
+      "name": "lang/RU/Sprites/bg_rank_5_RU.png",
+      "size": 6248,
+      "sha256": "15ee41b45952ad4b4ade08937c7f1506a0bbee4cc4bac3faacecc223b448ee8e"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_achievementText_RU.png",
+      "size": 2014,
+      "sha256": "11f7696f7db96bf3e59f2ac6b26418ea6d613e623af75033fe9178923a228cae"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_bartimer_blotchspotshowtime_text_RU.png",
+      "size": 22698,
+      "sha256": "5cd9991f66c843fd652ad33783706b198639da5312335a326e13cb0361655ce0"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_comboEnd_RU.png",
+      "size": 608,
+      "sha256": "6f9bf07a877d66c2bb41efec19f049ddce3db4173a97d475f03312189cbdb4c5"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_comboOver_RU.png",
+      "size": 554,
+      "sha256": "a9d4b9ae3c3d04a971595c496a45c0981df0365e01430ffd58a73f3e8eaedf2b"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_comboTitles_RU.png",
+      "size": 116188,
+      "sha256": "72eb67e02342407b02c8a183db28a6e22d6044b4bd04fc1403c74b4d123a4d96"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_cottondeco_RU.png",
+      "size": 11231,
+      "sha256": "7d7ea849b9dc5db79e0455aa7c07d7a5146e120a762837ca9e8fdd4b56ff6d8c"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_cottondecovandalized_RU.png",
+      "size": 9853,
+      "sha256": "2c5a969da080366627e86208929cabde5cbca96d03ad92f6cdeba5ece2465b5a"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_cottonsign_RU.png",
+      "size": 3008,
+      "sha256": "a47f1b7edd042e6e9a8b0ebbea53cbcfa307d5b7ec3a9cf07d1fd00103522fa7"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_delete_exhib_RU.png",
+      "size": 764,
+      "sha256": "b911d5f0a747cfc04aa2707788fd0f113aee85070e47f2bbc50c7b07023588e8"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_ducksign_RU.png",
+      "size": 5953,
+      "sha256": "7048ab0e13997d71e7931f588e2240973df2e6aa8ece8cf88c6fa544d5c71361"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_exit_exhib_RU.png",
+      "size": 1315,
+      "sha256": "8651f77ef7cd1b3cb527092394400370f25d3bf2919f24e8995c68d103ff784c"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_file_exhib_RU.png",
+      "size": 10820,
+      "sha256": "5a95b1d714b31bcd1ba4c847222fc780e6c1890c7b1293969ab6e42baaaa4d2b"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_file_exhib_RU_1.png",
+      "size": 6013,
+      "sha256": "df8e17ae4fbfc4674a4817454ec38a491a70ce29cac0d2f8555b199350de074f"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_file_exhib_RU_2.png",
+      "size": 8826,
+      "sha256": "2efb2c2f0d8acc45577dbf2ec4773470bb0321bcbb899258a40e768b40cc7508"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_hub_backdoor_RU.png",
+      "size": 1706,
+      "sha256": "b4a51c345f3536f94f5a8368b4712c8fb2a14a8325c901ccdb6d1da24abafab4"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_hub_molassesdoor_RU.png",
+      "size": 1778,
+      "sha256": "ff5f6929d222e3e13cd25e9efafac6c8b4512ff96c7fe6c40fae0435b3c95485"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_lang_flag_RU.png",
+      "size": 2210,
+      "sha256": "ad35e74049d76868705e14ec61983355d528732368cac5334eb3fcd5ff31f6c7"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_lapbg_RU.png",
+      "size": 4689,
+      "sha256": "6f7e9136f532d6101b1cfa88440bd437f14da06d2380966d19a68fbdb8320ad2"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_lappingportal_icon_RU.png",
+      "size": 1211,
+      "sha256": "946e9a430266103873d55d599dab2c28d6eeb49aac57fffc0af29ff2567d4ca8"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_molassessign2_RU.png",
+      "size": 3521,
+      "sha256": "30a46a845c472a2a9771b988d4bc90276c27e3d3a92eaee18360a32e84ce3133"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_molassessign_RU.png",
+      "size": 35274,
+      "sha256": "ae84d5b28e7a5cccb82488d3f83390b18c6b3de31c9bc4ceed578a9e749a0658"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_newpause_border_RU.png",
+      "size": 8549,
+      "sha256": "a01e7e219db4e51547163551715c8f9188ddefcba291d205d52ccaa04b555cc1"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_newpause_treasure_RU.png",
+      "size": 3303,
+      "sha256": "33b98a75945674377bfc0bfea076a544afe75aa890f16207d6048e38729cfdc4"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_nowplaying_RU.png",
+      "size": 5671,
+      "sha256": "b234b477695e747b0be1e9c8e55668d7d19dadc60ed6a45a591fca8e31267b70"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_nowplayingbonus_RU.png",
+      "size": 5671,
+      "sha256": "0bcf2985d29b13c92d3cf1cc75c89f245f6677286f0c2c02ffc5d1fedaaedada"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_paletteUnlock_RU.png",
+      "size": 3067,
+      "sha256": "730b15d8384f8789cfa7cdd6831c72f3610efff0c22d14ca1e4470d81f510ea5"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_rankA_text_RU.png",
+      "size": 8107,
+      "sha256": "89e306b7f903edef14118ec5f7a3e10b789f0f3ce4b10948d82382dcfc6a5e64"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_rankB_text_RU.png",
+      "size": 7339,
+      "sha256": "ac5f1a485dd206b92ca8418de41f91b1faf38fb6c6cff4a350f7e1c37c3c19f4"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_rankC_text_RU.png",
+      "size": 5293,
+      "sha256": "c939b53a5d3ed0aacac56b1b9c9662a8eeb2c5913b0d805d47fade0832070c7d"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_rankD_text_RU.png",
+      "size": 8623,
+      "sha256": "f350ce62e7925ef909c4ec24a710e85c71bb1fcf066bcb9eccecc04322fa548e"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_rankS_text_RU.png",
+      "size": 9653,
+      "sha256": "28c70f250493e93512225ad034c1e2469e3244deacad414d9e859881399f653a"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_rank_highscore_RU.png",
+      "size": 1620,
+      "sha256": "f9c0c889ba7af4685e2aa988eb2596ab5f36f62163ae45d44aecb5e3957f37e2"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_rankclipboard_RU.png",
+      "size": 12351,
+      "sha256": "33abd9c787dfcf82d110f5f4a54c8cf71413925beb4d5a5095dd33bbaaf9cfae"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_sugarrush_RU.png",
+      "size": 10369,
+      "sha256": "dd79f3e885e5745620d98950199dca8c4cd0a50bcaeb9d73e7308210a6f088d7"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_technicaldifficulty_RU.png",
+      "size": 9810,
+      "sha256": "199b004cb858d033584282422c050afafbc4bef466b7b9fda3a96c38a7c3bed3"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_technicaldifficulty_pizzy_RU.png",
+      "size": 76251,
+      "sha256": "237cae3070f2269c00ac1caba659ddca834b34656b85bc6d2eb46e022d08c3dc"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_timesup_RU.png",
+      "size": 24910,
+      "sha256": "472b1da4e1ebb061f21ddd7816a737de6f8a7bb631eadf3fd6c6e6306a594159"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_titleBg_exhib_RU.png",
+      "size": 28001,
+      "sha256": "3c8547a1657e0b47f350a607060df59d71cbc25ebd6513450b0135641980ddfd"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_titlecards_RU.png",
+      "size": 152752,
+      "sha256": "38193f17dee055b0741435242e8d2a3b19946e18969525fbf5bfe354992026e1"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_titlecards_title_RU.png",
+      "size": 33655,
+      "sha256": "1bea89146247d3a6b45489111a7418441c2a3a0d395cd7695720a65ca0b4a596"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_titlecardsignature_RU.png",
+      "size": 2826,
+      "sha256": "019623b5d14718207a38a17725bc031e151b0334e2685a593c9f86afc7461803"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorial_getthese_RU.png",
+      "size": 2733,
+      "sha256": "b57ebb8e1041ae323181c1d5940b0f7dcab75b49d4f5488998da9a39710d5cb3"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorialassets1_RU.png",
+      "size": 2730,
+      "sha256": "c8a313f18af18778e5bea4c98a70b0f4c30967975d9b992715d2cea9314aad93"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorialassets2_RU.png",
+      "size": 2153,
+      "sha256": "a9ff080a1e3f615c9559d87084950127367d9ebb9ca072a915d45cb70864aa51"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorialassets3_RU.png",
+      "size": 3875,
+      "sha256": "6c2b6c3f0147e05bbcc9964e1108ea78f8e0a0b23c4bfa80e0ae2f717ec48792"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorialassets4_RU.png",
+      "size": 3268,
+      "sha256": "2ff11af5dc97811665c49ac5cd492c940aea00c602e4d3cb7b1ede98342e1b3c"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorialassets5_RU.png",
+      "size": 3784,
+      "sha256": "4e1d071dbbc8e647a95c72faccece6f526074b607240972f8198cdb37cff1796"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorialassets6_RU.png",
+      "size": 2624,
+      "sha256": "2c77a029ba7a3dbdd8eeeafe7c8f076f058b9d28c8743ebb112e7402ff90bdbb"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorialassets7_RU.png",
+      "size": 2853,
+      "sha256": "8df7600f8e7593988a4b6a49d51f5e21ed567f36b4e28ecd85f3d8f5f631db5f"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tutorialassets8_RU.png",
+      "size": 3132,
+      "sha256": "24fbc6ff1a5ae5ca9d4bb723e796d5efee4a50ef759e686cababca210fa04144"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tvHUD_comboMeter_RU.png",
+      "size": 9087,
+      "sha256": "f78e2fecdba9e24ad00998ab80c98b7878ef0f1b202d0751153bad7f44666ead"
+    },
+    {
+      "name": "lang/RU/Sprites/spr_tvHUD_logoBounce_RU.png",
+      "size": 648,
+      "sha256": "de41c3d22d2b32e809cac5a0df6330ecb0ad86eadbcc654dace903495886d2bf"
+    },
+    {
+      "name": "options.ini",
+      "size": 145,
+      "sha256": "d6237e37f3a1d130227dc64dc4fa40adcb76c7cb18fc154927447286187fd5d6"
+    },
+    {
+      "name": "run_debug.bat",
+      "size": 90,
+      "sha256": "09231069c60634b7722753050ab0d6947434c31aff5ab537aeb06d4263913b19"
+    },
+    {
+      "name": "sound/Desktop/Master.bank",
+      "size": 9198,
+      "sha256": "a35027e94fd37fc399fd422e5426834fecb68d8fcdcaa457420b6098e574483b"
+    },
+    {
+      "name": "sound/Desktop/Master.strings.bank",
+      "size": 14898,
+      "sha256": "bdf80fa622914119342d0bd17d09634ae0b83bda82800ebac2a766cd2e6e7b7b"
+    },
+    {
+      "name": "sound/Desktop/music.bank",
+      "size": 82032608,
+      "sha256": "98c202735818ca741ae2e16a9af2a5a8aad9910bb2665c1b8bc504851e09ee62"
+    },
+    {
+      "name": "sound/Desktop/sfx.bank",
+      "size": 8830080,
+      "sha256": "247c518af0a6716474ec967960b110472c21e627e81dec613d46dce37261626e"
+    }
+  ]
+}
